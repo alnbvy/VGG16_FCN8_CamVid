@@ -1,4 +1,4 @@
-# Image segmentation of the Pet dataset using Unet
+# Fully Convolutional Neural Networks for Image Segmentation of the CamVid dataset
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -9,21 +9,22 @@
 
 
 ## General Information
-- The goal of the project is to develop a model to perform semantic image segmentation on the pet images
+- The goal of the project is to develop a model to perform image segmentation CamVid dataset
+- I will train the model on a [custom dataset](https://drive.google.com/file/d/0B0d9ZiqAgFkiOHR1NTJhWVJMNEU/view?usp=sharing) prepared by [divamgupta](https://github.com/divamgupta/image-segmentation-keras). This contains video frames from a moving vehicle and is a subsample of the [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid/) dataset. 
+
+![Decoder](dataset.png)
+
 - I am using a Unet neural network architecture which consists of an encoder and decoder section. This architecture is also a fully convolutional network:
 
-![Unet](Unet.png)
-![Encoder](Encoder.png)
-![Decoder](Decoder.png)
+![Decoder](FCN8.png)
 
-- The dataset is Oxford Pets - IIT dataset [BBC News Classification](https://www.robots.ox.ac.uk/~vgg/data/pets/). This dataset contains pet images, their classes, segmentation masks and head region-of-interest. I will only use the images and segmentation masks in this project. This dataset is already included in TensorFlow Datasets and we can simply download it. The segmentation masks are included in versions 3 and above.
-- The model achieves an accuracy of 85% on the validation set after 15 epochs.
-- I ran the notebook on Arizona State University's supercomputing cluster using two Tesla V100 GPUs. The information regarding the GPUs is included at the end of the notebook.
+- I will be using a pretrained VGG-16 network for the feature extraction path, then followed by an FCN-8 network for upsampling and generating the predictions. The output will be a label map (i.e. segmentation mask) with predictions for 12 classes.
+- The model achieves an accuracy of 84% on the validation set after 170 epochs.
+- I ran the notebook on Arizona State University's supercomputing cluster using one Tesla V100 GPUs. The information regarding the GPUs is included at the end of the notebook.
 
 ## Results
 
-![Example screenshot](Result1.png)
-![Example screenshot](Result2.png)
+![Example screenshot](Result.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 ## Technologies Used
